@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    我的网站|首页
+{% endblock %}
+
+{# 引用body css样式 #}
+{% block heard_extends %}
+    <link rel="stylesheet" href="/static/home.css">
+{% endblock %}
+
+<!--active显示引用-->
+{% block nav_home_active %}active{% endblock %}
+
+{% block content %}
+    <h3 class="home-content">hello world</h3>
+{% endblock %}

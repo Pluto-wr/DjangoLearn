@@ -1,0 +1,100 @@
+# Django
+* 原理
+- 遵循MVC(模型，视图，控制器)，实际是MVT(模型，视图，模板)
+- 模型处理数据相关的所有事务
+- 视图存取模型及调用恰当模板的相关逻辑，模型与模板的桥梁
+- 模板处理与表现相关的决定，如何在页面或其他类型文档进行显示
+
+* 常用命令 -- 需要在项目路径中
+1.启动本地服务器：[python manage.py runserver]
+2.创建应用：[python manage.py startapp XXX]
+3.数据库制造迁移：[python manage.py makemigrations]
+4.数据库迁移：[python manage.py migrate]
+
+* 模型的objects --> 是获取或操作模型的对象
+- XXX.objects.get(条件)
+- XXX.objects.all()
+- XXX.objects.filter(条件)
+
+`**一.2、 模板(template)**`
+* jinja2常见定界符
+* 语句 ->> if判断 for循环等： {%...%}
+* 表达式 ->> 字符串，变量，函数调用： {{...}}
+* 模板中自定标签：set标签
+
+
+
+
+
+
+
+
+
+# HTML
+`<!DOCTYPE html> 声明为 HTML5 文档`
+`<html> 元素是 HTML 页面的根元素`
+`<head> 元素包含了文档的元（meta）数据，如 <meta charset="utf-8"> 定义网页编码格式为 utf-8。`
+`<title> 元素描述了文档的标题`
+`<body> 元素包含了可见的页面内容`
+`<h1> 元素定义一个大标题 <h1>-<h6>`
+`<p> 元素定义一个段落`
+`HTML 链接是通过标签 <a> 来定义的。`
+`HTML 图像是通过标签 <img> 来定义的.`
+`表格由 <table> 标签来定义。每个表格均有若干行（由 <tr> 标签定义），每行被分割为若干单元格（由 <td> 标签定义）。字母 td 指表格数据（table data）
+表格的表头使用 <th> 标签进行定义`、
+`无序列表使用 <ul> 标签`
+`有序列表始于 <ol> 标签。每个列表项始于 <li> 标签。`
+`自定义列表以 <dl> 标签开始。每个自定义列表项以 <dt> 开始。每个自定义列表项的定义以 <dd> 开始。`
+`HTML 可以通过 <div> 和 <span>将元素组合起来。`
+`<div> 定义了文档的区域，块级 (block-level)`
+`<span> 	用来组合文档中的行内元素， 内联元素(inline)`
+`<table> 元素的作用是显示表格化的数据。`
+`表单使用表单标签 <form> 来设置,文本域通过<input type="text"> 标签来设定
+<input type="radio"> 标签定义了表单单选框选项, <input type="checkbox"> 定义了复选框,
+<input type="submit"> 定义了提交按钮.当用户单击确认按钮时，表单的内容会被传送到另一个文件。`
+`框架<iframe src="URL"></iframe>，可以在同一个浏览器窗口中显示不止一个页面。`
+`<script> 标签用于定义客户端脚本，比如 JavaScript。<script> 元素既可包含脚本语句，也可通过 src 属性指向外部脚本文件。`
+`在<head> 部分通过 <style>标签定义内部样式表:`
+
+# CSS
+`CSS 指层叠样式表，样式定义如何显示 HTML 元素`
+`CSS声明总是以分号(;)结束，声明总以大括号({})括起来:
+p {color:red;text-align:center;}`
+`多重样式优先级 内联样式）Inline style > （内部样式）Internal style sheet >（外部样式）External style sheet > 浏览器默认样式`
+`CSS盒子模型(Box Model)
+Margin(外边距) - 清除边框外的区域，外边距是透明的。
+Border(边框) - 围绕在内边距和内容外的边框。
+Padding(内边距) - 清除内容周围的区域，内边距是透明的。
+Content(内容) - 盒子的内容，显示文本和图像。
+总元素的宽度=宽度+左填充+右填充+左边框+右边框+左边距+右边距
+总元素的高度=高度+顶部填充+底部填充+上边框+下边框+上边距+下边距`
+`CSS 边框属性 [border-style]属性用来定义边框的样式 [border-width]属性为边框指定宽度`
+`CSS overflow 属性用于控制内容溢出元素框时显示的方式。`
+`CSS 组合选择符
+后代选择器(以空格分隔)
+子元素选择器(以大于号分隔
+相邻兄弟选择器（以加号分隔普通兄弟选择器（以破折号分隔）
+普通兄弟选择器（以破折号分隔）`
+CSS 伪类(Pseudo-classes),CSS伪类是用来添加一些选择器的特殊效果。
+伪类语法：selector:pseudo-class {property:value;}
+CSS类也可以使用伪类：selector.class:pseudo-class {property:value;}
+
+CSS 伪元素 CSS伪元素是用来添加一些选择器的特殊效果。
+伪元素的语法：selector:pseudo-element {property:value;}
+CSS类也可以使用伪元素：selector.class:pseudo-element {property:value;}
+伪元素可以结合CSS类： 
+
+垂直导航栏
+水平导航栏
+有两种方法创建横向导航栏。使用内联(inline)或浮动(float)的列表项。
+这两种方法都很好，但如果你想链接到具有相同的大小，你必须使用浮动的方法。
+
+CSS 提示工具(Tooltip)
+
+padding:25px 50px 75px 100px;
+上填充为25px
+右填充为50px
+下填充为75px
+左填充为100px
+
+
