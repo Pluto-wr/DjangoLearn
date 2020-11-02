@@ -13,5 +13,19 @@
 {% block nav_home_active %}active{% endblock %}
 
 {% block content %}
-    <h3 class="home-content">hello world</h3>
+    <video id="v1" autoplay loop muted>
+        <source src="../static/kui.mp4" />
+    </video>
+    <div class="text">
+        <h1>Hello, Welcome!</h1>
+<!--        <P>Always stick to the inner thoughts, never shrink-&#45;&#45; Hit worker</P>-->
+    </div>
+
+<!--    <div class="jumbotron">-->
+<!--        <div class="container">-->
+<!--            <h1>Hello, Welcome!</h1>-->
+<!--            <P>Always stick to the inner thoughts, never shrink-&#45;&#45; Hit worker</P>-->
+<!--&lt;!&ndash;            <p><a class="btn btn-primary btn-lg" href="{% url 'blog_list' %}" role="button">Learn more</a></p>&ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
 {% endblock %}
