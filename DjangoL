@@ -16,11 +16,21 @@
 - XXX.objects.all()
 - XXX.objects.filter(条件)
 
+* 命令行添加博客
+- 虚拟环境目录下 [python manage.py shell]进入
+- from xxx import XX 引入模型
+- object.all()查看所有 object.all().count()查看数量
+
+
+
+
 `**一.2、 模板(template)**`
 * jinja2常见定界符
 * 语句 ->> if判断 for循环等： {%...%}
 * 表达式 ->> 字符串，变量，函数调用： {{...}}
 * 模板中自定标签：set标签
+
+
 
 
 

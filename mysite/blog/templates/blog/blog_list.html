@@ -16,10 +16,9 @@
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
                 <div class="panel panel-success">
-                      <!--<div class="panel panel-default">-->
-                      <!--块标签味引用的话默认输出博客列表-->
-                      <div class="panel-heading">{% block blog_list_title %}博客列表（一共有{{ blogs|length }}篇博客）{% endblock %}</div>
-                      <div class="panel-body">
+                    <!--块标签未引用的话默认输出博客列表 这里paginator是指通过当前的页面找到分页器获取到所有数量-->
+                    <div class="panel-heading">{% block blog_list_title %}博客列表（一共有{{ page_of_blogs.paginator.count }}篇博客）{% endblock %}</div>
+                    <div class="panel-body">
                            {% for blog in blogs %}
                                 <div class="blog">
                                     <h3><a href="{% url 'blog_detail' blog.pk%}">{{ blog.title }}</a></h3>
@@ -36,12 +35,45 @@
                                     <h3>-- 暂无博客，敬请期待 --</h3>
                                 </div>
                            {% endfor %}
-                      </div>
+                    </div>
+                </div>
+                <div>
+                    {# 分页部分 #}
+                    <ul class="pagination">
+                        {# 上一页 #}
+                        <li>
+                            {# 根据paginator的has_previous属性判断传进来的标签是否有上一页，有的话返回True #}
+                            {% if page_of_blogs.has_previous %}
+                                {# page_of_blogs.previous_page_number 指当页面的上一页的页码 #}
+                                <a href="?page={{ page_of_blogs.previous_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            {% else %}
+                                <span aria-hidden="true">&laquo;</span>
+                            {% endif %}
+                        </li>
+                        {# 循环获取具体页码 通过当前所在页面paginator.page_range得到具体的页码#}
+                        {% for page_num in page_of_blogs.paginator.page_range %}
+                            {# 跳转的页面拿到循环的page_num #}
+                            <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+                        {% endfor %}
+                        {# 下一页 #}
+                        <li>
+                            {# 根据paginator的has_has_next属性判断传进来的标签是否有下一页，有的话返回True #}
+                            {% if page_of_blogs.has_next %}
+                                {# page_of_blogs.previous_page_number 指当页面的下一页的页码 #}
+                                <a href="?page={{ page_of_blogs.next_page_number }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            {% else %}
+                                <span aria-hidden="true">&raquo;</span>
+                            {% endif %}
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="hidden-xs col-sm-4 col-md-3 col-lg-2">
                 <div class="panel panel-success">
-<!--                    <div class="panel panel-default">-->
                       <div class="panel-heading">博客分类</div>
                       <div class="panel-body">
                            <ul class="blog-types">
@@ -54,7 +86,6 @@
                             </ul>
                       </div>
                 </div>
-<!--                </div>-->
             </div>
         </div>
     </div>
