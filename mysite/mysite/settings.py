@@ -126,6 +126,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+# 自定义参数
+# 页面分页数
+NUMBER_OF_BLOGS_PAGES = 5
 
 # # 设置日志
 # LOGGING = {
@@ -154,7 +157,7 @@ STATICFILES_DIRS = [
 #         'file': {  # 向文件中输出日志，日志会以文件的方式保存到项目目录下的 logs 文件夹下面；
 #             'level': 'INFO',
 #             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': os.path.join(BASE_DIR, 'logs/blog.log'),  # 日志文件的位置
+#             'filename': os.path.join(BASE_DIR, ''),  # 日志文件的位置
 #             'maxBytes': 300 * 1024 * 1024,
 #             'backupCount': 10,
 #             'formatter': 'verbose',
