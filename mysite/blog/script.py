@@ -14,8 +14,7 @@
 
 if __name__ == '__main__':
     try:
-        import os
-        import sys
+        import os, sys, random, string, datetime
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 定位到你的django根目录
         sys.path.append(os.path.abspath(os.path.join(BASE_DIR, os.pardir)))
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")  # 你的django的settings文件
@@ -24,19 +23,18 @@ if __name__ == '__main__':
         from blog.models import BlogType, Blog
         from django.contrib.auth.models import User
         # 循环生成博客列表数据
-        for i in range(1, 31):
+        for i in range(101, 103):
             blog = Blog()
-            blog.title = '循环下面第%d篇' % i
-            blog.content = '今天真是开心的一天'
+            blog.title = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + f'第{i}篇'
+            blog.content = ''.join(random.sample(string.ascii_letters + string.punctuation + string.digits, 70))
             blog_type = BlogType.objects.all()[0]
             blog.blog_type = blog_type
             user = User.objects.all()[0]
             blog.author = user
-            # blog.save()
             blog.save()
-            print(blog)
-            blog1 = Blog.objects.count()
-            print(blog1)
+            print(blog.title, f'{i}:{blog.content}\n')
+        blog1 = Blog.objects.count()
+        print(blog1)
     except Exception:
         raise
 

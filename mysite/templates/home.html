@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    我的网站|首页
+    BLOG|首页
 {% endblock %}
 
 {# 引用body css样式 #}
@@ -9,23 +9,15 @@
     <link rel="stylesheet" href="/static/home.css">
 {% endblock %}
 
-<!--active显示引用-->
+<!--active显示引用 选择首页有选中效果-->
 {% block nav_home_active %}active{% endblock %}
 
+{# 首页显示的内容，引用视频 #}
 {% block content %}
     <video id="v1" autoplay loop muted>
         <source src="../static/kui.mp4" />
     </video>
     <div class="text">
-        <h1>Hello, Welcome!</h1>
-<!--        <P>Always stick to the inner thoughts, never shrink-&#45;&#45; Hit worker</P>-->
+        <h1>Hello ！</h1>
     </div>
-
-<!--    <div class="jumbotron">-->
-<!--        <div class="container">-->
-<!--            <h1>Hello, Welcome!</h1>-->
-<!--            <P>Always stick to the inner thoughts, never shrink-&#45;&#45; Hit worker</P>-->
-<!--&lt;!&ndash;            <p><a class="btn btn-primary btn-lg" href="{% url 'blog_list' %}" role="button">Learn more</a></p>&ndash;&gt;-->
-<!--        </div>-->
-<!--    </div>-->
 {% endblock %}

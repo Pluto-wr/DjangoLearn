@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div>
-                    {# 分页部分 #}
+                    {# 分页部分 pagination-lg#}
                     <ul class="pagination">
                         {# 上一页 #}
                         <li>
@@ -52,10 +52,15 @@
                                 <span aria-hidden="true">&laquo;</span>
                             {% endif %}
                         </li>
-                        {# 循环获取具体页码 通过当前所在页面paginator.page_range得到具体的页码#}
-                        {% for page_num in page_of_blogs.paginator.page_range %}
+                        {# 循环获取具体页码 通过当前所在页面paginator.page_range得到具体的迭代器页码 #}
+                        {% for page_num in page_range %}
                             {# 跳转的页面拿到循环的page_num #}
-                            <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+<!--                            <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>-->
+                            {% if page_num == page_of_blogs.number %}
+                                <li class="active"><span>{{ page_num }}</span></li>
+                            {% else %}
+                                <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+                            {% endif %}
                         {% endfor %}
                         {# 下一页 #}
                         <li>

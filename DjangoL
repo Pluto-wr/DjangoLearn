@@ -1,3 +1,7 @@
+# 相关资料
+* 分页器：https://blog.csdn.net/Y_cwen/article/details/88741713
+
+
 # Django
 * 原理
 - 遵循MVC(模型，视图，控制器)，实际是MVT(模型，视图，模板)
