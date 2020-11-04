@@ -3141,3 +3141,13 @@ INFO -- 2020-11-03 16:33:39,276 - django.server - "GET /blog/?page=11 HTTP/1.1" 
 INFO -- 2020-11-03 16:33:39,608 - django.server - "GET /blog/?page=15 HTTP/1.1" 200 13859
 INFO -- 2020-11-03 16:33:40,035 - django.server - "GET /blog/?page=19 HTTP/1.1" 200 13859
 INFO -- 2020-11-03 16:34:56,169 - django.utils.autoreload - E:\myself\DjangoLearn\mysite\mysite\settings.py changed, reloading.
+INFO -- 2020-11-04 13:16:20,170 - django.utils.autoreload - Watching for file changes with StatReloader
+INFO -- 2020-11-04 13:16:26,734 - django.server - "GET /blog/?page=1 HTTP/1.1" 200 9266
+INFO -- 2020-11-04 13:17:06,698 - django.server - "GET /blog/?page=1 HTTP/1.1" 200 9266
+INFO -- 2020-11-04 13:17:06,872 - django.server - "GET /blog/?page=1 HTTP/1.1" 200 9266
+INFO -- 2020-11-04 13:17:07,672 - django.server - "GET /blog/ HTTP/1.1" 200 9266
+INFO -- 2020-11-04 13:17:33,883 - django.server - "GET /blog/ HTTP/1.1" 200 9266
+INFO -- 2020-11-04 13:17:49,314 - django.server - "GET /blog/ HTTP/1.1" 200 9266
+INFO -- 2020-11-04 13:17:56,848 - django.server - "GET / HTTP/1.1" 200 1836
+INFO -- 2020-11-04 13:17:57,310 - django.server - "GET /blog/ HTTP/1.1" 200 9266
+INFO -- 2020-11-04 13:19:19,252 - django.utils.autoreload - E:\myself\DjangoLearn\mysite\mysite\settings.py changed, reloading.

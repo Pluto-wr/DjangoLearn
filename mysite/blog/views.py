@@ -44,7 +44,7 @@ def blog_detail(request, blog_pk):
     return render_to_response('blog/blog_detail.html', context)
 
 
-# 筛选博客类型
+# 根据博客类型获取到博客
 def blogs_with_type(request, blog_type_pk):
     context = {}
     blog_type = get_object_or_404(BlogType, pk=blog_type_pk)

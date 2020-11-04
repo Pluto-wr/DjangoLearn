@@ -15,9 +15,9 @@
 if __name__ == '__main__':
     try:
         import os, sys, random, string, datetime
-        BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 定位到你的django根目录
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 定位到django根目录
         sys.path.append(os.path.abspath(os.path.join(BASE_DIR, os.pardir)))
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")  # 你的django的settings文件
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")  # django的settings文件路径
         import django
         django.setup()
         from blog.models import BlogType, Blog
