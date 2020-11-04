@@ -25,6 +25,11 @@
 - from xxx import XX 引入模型
 - object.all()查看所有 object.all().count()查看数量
 
+# 筛选相关
+- objects.filter(key=value) 筛选出等于某个值
+- objects.exclude(key=value) 筛选出不等于某个值
+- __XX 某些属性，>= <= in 等等
+- 支持链式
 
 
 
