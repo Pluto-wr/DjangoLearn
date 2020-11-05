@@ -25,7 +25,7 @@ if __name__ == '__main__':
         # 循环生成博客列表数据
         for i in range(101, 103):
             blog = Blog()
-            blog.title = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + f'第{i}篇'
+            blog.title = datetime.datetime.now().strftime('%Y-%m-%d') + f'第{i}篇'
             blog.content = ''.join(random.sample(string.ascii_letters + string.punctuation + string.digits, 70))
             blog_type = BlogType.objects.all()[0]
             blog.blog_type = blog_type

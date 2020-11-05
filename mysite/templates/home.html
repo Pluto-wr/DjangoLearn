@@ -5,8 +5,9 @@
 {% endblock %}
 
 {# 引用body css样式 #}
+{% load static %}
 {% block heard_extends %}
-    <link rel="stylesheet" href="/static/home.css">
+    <link rel="stylesheet" href={% static 'home.css' %}>
 {% endblock %}
 
 <!--active显示引用 选择首页有选中效果-->

@@ -6,11 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {# 应用块标签 这里是页面标题#}
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="/static/base.css">
-    <link rel="stylesheet" href="/static/bootstrap-3.3.7/css/bootstrap.min.css">
+{#    <link rel="stylesheet" href="/static/base.css">#}
+{#    <link rel="stylesheet" href="/static/bootstrap-3.3.7/css/bootstrap.min.css">#}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7/css/bootstrap.min.css' %}">
     <!--JQ文件一定要在JS文件之前加载-->
-    <script type="text/javascript" src="../static/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="../static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+{#    <script type="text/javascript" src="../static/jquery-3.5.1.min.js"></script>#}
+{#    <script type="text/javascript" src="../static/bootstrap-3.3.7/js/bootstrap.min.js"></script>#}
+    <script type="text/javascript" src={% static 'jquery-3.5.1.min.js' %}></script>
+    <script type="text/javascript" src={% static 'bootstrap-3.3.7/js/bootstrap.min.js' %}></script>
     <!--css模板块-->
     {% block heard_extends %}{% endblock %}
 </head>
@@ -39,9 +44,13 @@
     </div>
     <!--主体内容部分-->
     {% block content %}{% endblock %}
-    <!--底部版权显示部分-->
-    <div class="footer">
-      <p>Copyright © 2020 WURUN BLOG BY WURUN </p>
-    </div>
+{#    <!--底部版权显示部分-->#}
+{#    <div id="footer">#}
+{#        Copyright © 2020 WURUN BLOG BY WURUN#}
+{#        <br>#}
+{#        <span id="poweredby">#}
+{#            Powered by .NET 5.0.0-rc.2.20475.5 on Kubernetes#}
+{#        </span>#}
+{#    </div>#}
 </body>
 </html>

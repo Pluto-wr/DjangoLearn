@@ -75,6 +75,6 @@ def blogs_with_date(request, year, month):
     blogs_all_list = Blog.objects.filter(created_time__year=year, created_time__month=month)  # 获取根据类型筛选出的博客列表
     context = get_blogs_list_common_data(request, blogs_all_list)
     # 获取Blog, BlogType的所有字段内容, 返回字典,
-    context.update(blogs_with_date=f'{year}年{month}月')
+    context.update(blogs_with_date=f'{year}年-{month}月')
     return render_to_response('blog/blogs_with_date.html', context)
 

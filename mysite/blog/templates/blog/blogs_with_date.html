@@ -1,8 +1,8 @@
 {% extends 'blog/blog_list.html' %}
 
 {# 页面标题 获取的是 #}
-{% block title %}{{ blog_type.type_name }}{% endblock %}
+{% block title %}日期：{{ blogs_with_date }}{% endblock %}
 
 {# 页面内容 获取的是blog_list.html中的页面内容部分#}
-{% block blog_list_title %}分类：{{ blogs_with_date }}{% endblock %}
+{% block blog_list_title %}日期归档：{{ blogs_with_date }}{% endblock %}
 
