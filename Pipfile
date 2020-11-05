@@ -12,6 +12,7 @@ django-filer = "*"
 markdown = "*"
 django-mdeditor = "*"
 pygments = "*"
+django-ckeditor = "*"
 
 [requires]
 python_version = "3.8"

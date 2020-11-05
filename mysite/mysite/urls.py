@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 
 #
@@ -23,5 +25,8 @@ urlpatterns = [
     path('article/', include('article.urls')),  # include将该URL分发给article的urls.py处理。
     # blog url 首页
     path('', views.home, name='home'),
+    path('ckeditor', include('ckeditor_uploader.urls')),  # 配置上传图片的url
     path('blog/', include('blog.urls')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

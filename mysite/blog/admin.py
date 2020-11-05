@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import BlogType, Blog
 
-# Register your models here.
+# Register your models here. 注册完模型，才能在后台管理界面显示字段
 
 
 @admin.register(BlogType)
@@ -11,4 +11,4 @@ class BlogTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('title', 'blog_type', 'author', 'created_time', 'last_updated_time')
+    list_display = ('title', 'blog_type', 'author', 'read_num', 'created_time', 'last_updated_time')

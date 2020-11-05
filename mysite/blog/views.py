@@ -1,7 +1,8 @@
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.core.paginator import Paginator  # Django自带的分页器
 from .models import Blog, BlogType
-from mysite import settings
+# from mysite import settings
+from django.conf import settings
 
 # Create your views here.
 
@@ -26,6 +27,9 @@ def get_blogs_list_common_data(request, blogs_all_list):
     if page_range[-1] != paginator.num_pages:
         page_range.append(paginator.num_pages)
 
+    # 获取博客分类对应的博客数量
+
+
     context = {}
     # 获取Blog, BlogType的所有字段内容, 返回字典,
     context.update(blogs=page_of_blogs.object_list,
@@ -47,15 +51,20 @@ def blog_list(request):
 
 # 具体的博客内容视图
 def blog_detail(request, blog_pk):
-    context = {}
     blog = get_object_or_404(Blog, pk=blog_pk)  # ==Blog.objects.get(pk=blog_pk)，根据主键id获取到这篇博文的具体内容
+    if not request.COOKIES.get(f'blog{blog_pk}read'):
+        blog.read_num += 1  # 进入到这篇博客就把read_num + 1
+        blog.save()  # 全局保存，相当于修改
+    context = {}
     context.update(blog=blog,
                    # 通过filter的__gt方法筛选出大于当前博客创建时间的创建的博客取最后一个为上一篇
                    previous_blog=Blog.objects.filter(created_time__gt=blog.created_time).last(),
                    # 通过filter的__lt方法筛选出小于当前博客创建时间的创建的博客取最前一个为下一篇
                    next_blog=Blog.objects.filter(created_time__lt=blog.created_time).first(),
                    )
-    return render_to_response('blog/blog_detail.html', context)
+    response = render_to_response('blog/blog_detail.html', context)  # 响应
+    response.set_cookie(f'blog{blog_pk}read', 'true')  # 根据博客的主键值设置cookie, 不设置失效时间，关闭浏览器失效
+    return response
 
 
 # 根据博客类型获取到博客
