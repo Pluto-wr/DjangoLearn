@@ -22,14 +22,14 @@
                     <div class="panel-body">
                            {% for blog in blogs %}
                                 <div class="blog">
-                                    <h3><a href="{% url 'blog_detail' blog.pk%}">{{ blog.title }}</a></h3>
+                                    <h3><b><a href="{% url 'blog_detail' blog.pk%}">{{ blog.title }}</a></b></h3>
                                     <p class="blog-info">
                                         <span class="glyphicon glyphicon-list"></span><a href="{% url 'blogs_with_type' blog.blog_type.pk %}"> {{ blog.blog_type}}</a>&nbsp;&nbsp;&nbsp;
                                         <span class="glyphicon glyphicon-user"></span> {{ blog.author }}&nbsp;&nbsp;&nbsp;
                                         <span class="glyphicon glyphicon-time"></span> {{ blog.created_time|date:"Y-m-d H:i:s" }}&nbsp;&nbsp;&nbsp;
                                         <span class="glyphicon glyphicon glyphicon-eye-open"></span> 阅读: {{ blog.read_num }}
                                     </p>
-                                    <p>{{ blog.content|striptags|truncatechars:120 }}</p>
+                                    <p><b>摘要：{{ blog.content|striptags|truncatechars:120 }}</b></p>
                                 </div>
                             <!--for循环中的提示，empty-->
                            {% empty %}
