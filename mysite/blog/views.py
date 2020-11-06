@@ -1,8 +1,8 @@
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.core.paginator import Paginator  # Django自带的分页器
 from .models import Blog, BlogType
-# from mysite import settings
 from django.conf import settings
+from read_statistics.utils import read_statistics_once_read
 
 # Create your views here.
 
@@ -52,9 +52,7 @@ def blog_list(request):
 # 具体的博客内容视图
 def blog_detail(request, blog_pk):
     blog = get_object_or_404(Blog, pk=blog_pk)  # ==Blog.objects.get(pk=blog_pk)，根据主键id获取到这篇博文的具体内容
-    if not request.COOKIES.get(f'blog{blog_pk}read'):
-        blog.read_num += 1  # 进入到这篇博客就把read_num + 1
-        blog.save()  # 全局保存，相当于修改
+    read_cookie_key = read_statistics_once_read(request, blog)
     context = {}
     context.update(blog=blog,
                    # 通过filter的__gt方法筛选出大于当前博客创建时间的创建的博客取最后一个为上一篇
@@ -63,7 +61,7 @@ def blog_detail(request, blog_pk):
                    next_blog=Blog.objects.filter(created_time__lt=blog.created_time).first(),
                    )
     response = render_to_response('blog/blog_detail.html', context)  # 响应
-    response.set_cookie(f'blog{blog_pk}read', 'true')  # 根据博客的主键值设置cookie, 不设置失效时间，关闭浏览器失效
+    response.set_cookie(read_cookie_key)  # 根据博客的主键值设置cookie, 不设置失效时间，关闭浏览器失效
     return response
 
 

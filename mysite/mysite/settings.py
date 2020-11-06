@@ -33,14 +33,15 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
+    'django.contrib.contenttypes',   # 记录所有Django用到的所有模型 ContentType表
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'article',
-    'blog',
     'ckeditor',  # 富文本编辑器
     'ckeditor_uploader',  # 注册上传图片应用
+    'article',
+    'blog',
+    'read_statistics',
 ]
 
 MIDDLEWARE = [
