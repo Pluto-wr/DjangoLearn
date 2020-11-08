@@ -8,7 +8,7 @@
 @Software: PyCharm
 @Version: 1.0
 @Update:
-@Copyright: Copyright@厦门科拓通讯技术股份有限公司 
+@Copyright:
 """
 
 
@@ -37,5 +37,3 @@ if __name__ == '__main__':
         print(blog1)
     except Exception:
         raise
-
-

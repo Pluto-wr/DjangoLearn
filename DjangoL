@@ -8,6 +8,7 @@
 - 模型处理数据相关的所有事务
 - 视图存取模型及调用恰当模板的相关逻辑，模型与模板的桥梁
 - 模板处理与表现相关的决定，如何在页面或其他类型文档进行显示
+- 创建model-->添加主子url-->创建view function-->创建templates
 
 * 常用命令 -- 需要在项目路径中
 1.启动本地服务器：[python manage.py runserver]
@@ -16,9 +17,9 @@
 4.数据库迁移：[python manage.py migrate]
 
 * 模型的objects --> 是获取或操作模型的对象
-- XXX.objects.get(条件)
-- XXX.objects.all()
-- XXX.objects.filter(条件)
+- XXX.objects.get(条件) --> 返回的是Model对象，类型为列表
+- XXX.objects.all()    --> all返回的是QuerySet对象,支持迭代
+- XXX.objects.filter(条件) --> filter和get类似 功能更加强大
 
 * 命令行添加博客
 - 虚拟环境目录下 [python manage.py shell]进入
@@ -26,7 +27,7 @@
 - object.all()查看所有 object.all().count()查看数量
 
 # 筛选相关
-- objects.filter(key=value) 筛选出等于某个值
+- objects.filter(key=value) 筛选出等于某个值  返回的是model对象，列表类型
 - objects.exclude(key=value) 筛选出不等于某个值
 - __XX 某些属性，>= <= in 等等
 - 支持链式

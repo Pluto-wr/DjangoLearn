@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    统计
+{% endblock %}
+
+<!--active显示引用 选择首页有选中效果-->
+{% block nav_statistics_active %}active{% endblock %}
+
+{# 引用body css样式 #}
+{% load static %}
+{% block heard_extends %}
+    <link rel="stylesheet" href={% static 'statistics/statistics.css' %}>
+    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+                <div class="panel panel-warning">
+                    <div class="panel-heading"><p class="glyphicon glyphicon-calendar"><b>-周阅读总数统计--</b></p></div>
+                    <div class="panel-body">
+                        <div id="container"></div>
+                        <script>
+                            // 图表配置
+                            var options = {
+                                chart: {type: 'line'},                       //指定图表的类型，默认是折线图（line）},
+                                title: { text: null },             // 标题
+                                xAxis: {
+                                    categories: {{ dates|safe }},  // x 轴分类
+                                    tickmarkPlacement: 'on',
+                                    title: {text: '阅读量变化'}
+                                },
+                                yAxis: {
+                                    title: { text: null}, // y 轴标题
+                                    labels:{ enabled: false}, // 不显示y轴分类
+                                    gridLineDashStyle: 'Dash'  // 虚线显示
+                                },
+                                series: [{                              // 数据列
+                                    name: '阅读量',                        // 数据列名
+                                    data: {{ read_nums }}                     // 数据
+                                }],
+                                plotOptions: {
+                                    line: {
+                                        dataLabels: {
+                                            enabled: true
+                                        }
+                                    }
+                                },
+                                legend:{ enabled: false},  // 图例
+                                credits: { enabled: false}  // 版权信息
+                            };
+                            // 图表初始化函数
+                            var chart = Highcharts.chart('container', options);
+                        </script>
+                    </div>
+                    </div>
+                </div>
+                <div class="hidden-xs col-sm-4 col-md-3 col-lg-3">
+            <div class="panel panel-warning">
+                  <div class="panel-heading"><b>今日热门</b></div>
+                  <div class="panel-body">
+                        <ul class="list-group">
+                            {% for hot in today_hot %}
+                                <li class="list-group-item">
+                                    <a href="{% url 'blog_detail' hot.content_object.pk%}">{{ hot.content_object.title }}（{{ hot.read_num }}）</a>
+                                </li>
+                            {% empty %}
+                                <li>暂时没有喔~稍后再来吧~~</li>
+                            {% endfor %}
+                        </ul>
+                  </div>
+            </div>
+            <div class="panel panel-warning">
+                <div class="panel-heading"><b>七日热门</b></div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        {% for hot in week_hot %}
+                            <li class="list-group-item">
+                                <a href="{% url 'blog_detail' hot.id %}">{{ hot.title }}（{{ hot.read_num_sum }}）</a>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

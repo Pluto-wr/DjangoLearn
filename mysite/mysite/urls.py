@@ -27,6 +27,11 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('ckeditor', include('ckeditor_uploader.urls')),  # 配置上传图片的url
     path('blog/', include('blog.urls')),
+    path('statistics/', include('read_statistics.urls')),  # 统计页面
+    path('comment/', include('comment.urls')),  # 评论
+    path('login/', views.login, name='login'),  # 登录
+    path('register/', views.register, name='register')  # 注册
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

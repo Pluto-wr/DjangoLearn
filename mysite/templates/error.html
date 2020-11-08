@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    BLOG|错误
+{% endblock %}
+
+
+
+<!--active显示引用 选择首页有选中效果-->
+{% block nav_home_active %}active{% endblock %}
+
+{# 首页显示的内容，引用视频 #}
+{% block content %}
+    {{ message }}, <a href="{{ redirect_to }}">返回</a>
+{% endblock %}

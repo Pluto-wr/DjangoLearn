@@ -18,7 +18,7 @@
             <div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
                 <div class="panel panel-success">
                     <!--块标签未引用的话默认输出博客列表 这里paginator是指通过当前的页面找到分页器获取到所有数量-->
-                    <div class="panel-heading">{% block blog_list_title %}博客列表{% endblock %}</div>
+                    <div class="panel-heading">{% block blog_list_title %}<b>博客列表</b>{% endblock %}</div>
                     <div class="panel-body">
                            {% for blog in blogs %}
                                 <div class="blog">
@@ -88,7 +88,7 @@
             </div>
             <div class="hidden-xs col-sm-4 col-md-3 col-lg-2">
                 <div class="panel panel-success">
-                      <div class="panel-heading">博客分类</div>
+                      <div class="panel-heading"><b>博客分类</b></div>
                       <div class="panel-body">
                             <ul class="list-group">
                                 {% for blog_type in blog_types %}
@@ -103,7 +103,7 @@
                       </div>
                 </div>
                 <div class="panel panel-success">
-                    <div class="panel-heading">日期归档</div>
+                    <div class="panel-heading"><b>日期归档</b></div>
                     <div class="panel-body">
                         <ul class="list-group">
                             {% for blog_date in blog_dates %}

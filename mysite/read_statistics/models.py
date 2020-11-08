@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey  #
 from django.contrib.contenttypes.models import ContentType  # 引用 ContentType模型
 from django.db.models.fields import exceptions
+from django.utils import timezone
 # Create your models here.
 
 
@@ -23,3 +24,12 @@ class ReadNumExpandMethod():
         except exceptions.ObjectDoesNotExist:  # 如果不存在read_num, 返回0
             return 0
         # return self.readnum.read_num  # 通过外键关联的方式，取到模型ReadNum的属性（字段）read_num
+
+
+# readdetial是日期间隔对象。所以不继承ReadNum
+class ReadDetail(models.Model):
+    date = models.DateField(default=timezone.now)
+    read_num = models.IntegerField(default=0)  # 阅读计数字段，默认0
+    content_type = models.ForeignKey(ContentType, on_delete=models.DO_NOTHING)  # 多对一，外键指向ContentType模型
+    object_id = models.PositiveIntegerField()  # 数值字段类型，存储将要关联的模型中的主键值
+    content_object = GenericForeignKey('content_type', 'object_id')

@@ -2,7 +2,9 @@ from django.shortcuts import render, render_to_response, get_object_or_404
 from django.core.paginator import Paginator  # Django自带的分页器
 from .models import Blog, BlogType
 from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
 from read_statistics.utils import read_statistics_once_read
+from comment.models import Comment
 
 # Create your views here.
 
@@ -28,8 +30,6 @@ def get_blogs_list_common_data(request, blogs_all_list):
         page_range.append(paginator.num_pages)
 
     # 获取博客分类对应的博客数量
-
-
     context = {}
     # 获取Blog, BlogType的所有字段内容, 返回字典,
     context.update(blogs=page_of_blogs.object_list,
@@ -46,23 +46,7 @@ def get_blogs_list_common_data(request, blogs_all_list):
 def blog_list(request):
     blogs_all_list = Blog.objects.all()  # 获取全部的博客列表
     context = get_blogs_list_common_data(request, blogs_all_list)
-    return render_to_response('blog/blog_list.html', context)
-
-
-# 具体的博客内容视图
-def blog_detail(request, blog_pk):
-    blog = get_object_or_404(Blog, pk=blog_pk)  # ==Blog.objects.get(pk=blog_pk)，根据主键id获取到这篇博文的具体内容
-    read_cookie_key = read_statistics_once_read(request, blog)
-    context = {}
-    context.update(blog=blog,
-                   # 通过filter的__gt方法筛选出大于当前博客创建时间的创建的博客取最后一个为上一篇
-                   previous_blog=Blog.objects.filter(created_time__gt=blog.created_time).last(),
-                   # 通过filter的__lt方法筛选出小于当前博客创建时间的创建的博客取最前一个为下一篇
-                   next_blog=Blog.objects.filter(created_time__lt=blog.created_time).first(),
-                   )
-    response = render_to_response('blog/blog_detail.html', context)  # 响应
-    response.set_cookie(read_cookie_key)  # 根据博客的主键值设置cookie, 不设置失效时间，关闭浏览器失效
-    return response
+    return render(request, 'blog/blog_list.html', context)
 
 
 # 根据博客类型获取到博客
@@ -74,7 +58,7 @@ def blogs_with_type(request, blog_type_pk):
     # context = {}
     # 获取Blog, BlogType的所有字段内容, 返回字典,
     context.update(blog_type=blog_type)
-    return render_to_response('blog/blogs_with_type.html', context)
+    return render(request, 'blog/blogs_with_type.html', context)
 
 
 # 根据年月获取的博客
@@ -83,5 +67,23 @@ def blogs_with_date(request, year, month):
     context = get_blogs_list_common_data(request, blogs_all_list)
     # 获取Blog, BlogType的所有字段内容, 返回字典,
     context.update(blogs_with_date=f'{year}年-{month}月')
-    return render_to_response('blog/blogs_with_date.html', context)
+    return render(request, 'blog/blogs_with_date.html', context)
 
+
+# 具体的博客内容视图
+def blog_detail(request, blog_pk):
+    blog = get_object_or_404(Blog, pk=blog_pk)  # ==Blog.objects.get(pk=blog_pk)，根据主键id获取到这篇博文的具体内容
+    read_cookie_key = read_statistics_once_read(request, blog)
+    blog_content_type = ContentType.objects.get_for_model(blog)  # 获取模型类或模型实例，并返回表示该模型的ContentType实例 <ContentType: blog>
+    comments = Comment.objects.filter(content_type=blog_content_type, object_id=blog.pk)  # content_type==ContentType实例==blog
+    context = {}
+    context.update(blog=blog,
+                   # 通过filter的__gt方法筛选出大于当前博客创建时间的创建的博客取最后一个为上一篇
+                   previous_blog=Blog.objects.filter(created_time__gt=blog.created_time).last(),
+                   # 通过filter的__lt方法筛选出小于当前博客创建时间的创建的博客取最前一个为下一篇
+                   next_blog=Blog.objects.filter(created_time__lt=blog.created_time).first(),
+                   comments=comments,
+                   )
+    response = render(request, 'blog/blog_detail.html', context)  # 响应
+    response.set_cookie(read_cookie_key, 'true')  # 根据博客的主键值设置cookie, 不设置失效时间，关闭浏览器失效
+    return response

@@ -1,14 +1,14 @@
 # !/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-@CreateDate: 2020// :
-@FileName: .py
-@FuncSummary: 
+@CreateDate: 2020/11/3 21:41
+@FileName: urls.py
+@FuncSummary: blog应用子路由
 @Author: WU RUN
 @Software: PyCharm
 @Version: 1.0
 @Update:
-@Copyright: Copyright@厦门科拓通讯技术股份有限公司 
+@Copyright:
 """
 
 from django.urls import path

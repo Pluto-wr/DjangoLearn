@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericRelation
 from ckeditor_uploader.fields import RichTextUploadingField
-from read_statistics.models import ReadNumExpandMethod
+from read_statistics.models import ReadNumExpandMethod, ReadDetail
 from django.db.models.fields import exceptions
 from django.contrib.contenttypes.models import ContentType
 # Create your models here.
@@ -25,6 +26,7 @@ class Blog(models.Model, ReadNumExpandMethod):
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
     created_time = models.DateTimeField(auto_now_add=True)
     last_updated_time = models.DateTimeField(auto_now=True)
+    read_details = GenericRelation(ReadDetail)  # 反向通用关系，创建一个从相关对象到该对象的关系， 这里关联到ReadDetail-->Blog
     objects = models.Manager()
 
     def __str__(self):

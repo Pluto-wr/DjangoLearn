@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'article',
     'blog',
     'read_statistics',
+    'comment',
 ]
 
 MIDDLEWARE = [
@@ -139,6 +140,15 @@ CKEDITOR_UPLOAD_PATH = 'upload/'
 # 自定义参数
 # 页面分页数
 NUMBER_OF_BLOGS_PAGES = 10
+
+
+# 缓存设置--> 数据库高速缓存
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+    }
+}
 
 # # 设置日志
 # LOGGING = {
