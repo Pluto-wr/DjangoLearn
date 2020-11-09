@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from read_statistics.utils import read_statistics_once_read
 from comment.models import Comment
+from comment.forms import CommentForm
 
 # Create your views here.
 
@@ -83,6 +84,9 @@ def blog_detail(request, blog_pk):
                    # 通过filter的__lt方法筛选出小于当前博客创建时间的创建的博客取最前一个为下一篇
                    next_blog=Blog.objects.filter(created_time__lt=blog.created_time).first(),
                    comments=comments,
+                   # 初始化CommentForm传入对应的参数渲染到模板给前端
+                   comment_form=CommentForm(initial={'content_type': blog_content_type.model,  # 这是是将模型Blog对象转成字符串
+                                                     'object_id': blog_pk}),
                    )
     response = render(request, 'blog/blog_detail.html', context)  # 响应
     response.set_cookie(read_cookie_key, 'true')  # 根据博客的主键值设置cookie, 不设置失效时间，关闭浏览器失效
