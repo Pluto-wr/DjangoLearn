@@ -22,7 +22,8 @@ class CommentForm(forms.Form):
     text = forms.CharField(widget=CKEditorWidget(config_name='comment_ckeditor'),
                            error_messages={'required': '评论内容不能为空'})  # text渲染成文本框，可以输入多行
 
-    # 改写父类init方法，实例化的时候将子类的user属性转换为父类Form的属性
+    # 子类改写父类init方法，使父类初始属性增加user，super调用父类的init，返回父类的对象的任何方法
+    # https://www.cnblogs.com/nerrissa/articles/5607291.html
     def __init__(self, *args, **kwargs):
         if 'user' in kwargs:
             self.user = kwargs.pop('user')
