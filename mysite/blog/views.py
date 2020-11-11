@@ -76,17 +76,18 @@ def blog_detail(request, blog_pk):
     blog = get_object_or_404(Blog, pk=blog_pk)  # ==Blog.objects.get(pk=blog_pk)，根据主键id获取到这篇博文的具体内容
     read_cookie_key = read_statistics_once_read(request, blog)
     blog_content_type = ContentType.objects.get_for_model(blog)  # 获取模型类或模型实例，并返回表示该模型的ContentType实例 <ContentType: blog>
-    comments = Comment.objects.filter(content_type=blog_content_type, object_id=blog.pk)  # content_type==ContentType实例==blog
+    comments = Comment.objects.filter(content_type=blog_content_type, object_id=blog.pk, parent=None)  # content_type==ContentType实例==blog
     context = {}
     context.update(blog=blog,
                    # 通过filter的__gt方法筛选出大于当前博客创建时间的创建的博客取最后一个为上一篇
                    previous_blog=Blog.objects.filter(created_time__gt=blog.created_time).last(),
                    # 通过filter的__lt方法筛选出小于当前博客创建时间的创建的博客取最前一个为下一篇
                    next_blog=Blog.objects.filter(created_time__lt=blog.created_time).first(),
-                   comments=comments,
+                   comments=comments.order_by('-comment_time'),
                    # 初始化CommentForm传入对应的参数渲染到模板给前端
                    comment_form=CommentForm(initial={'content_type': blog_content_type.model,  # 这是是将模型Blog对象转成字符串
-                                                     'object_id': blog_pk}),
+                                                     'object_id': blog_pk,
+                                                     'reply_comment_id': 0}),
                    )
     response = render(request, 'blog/blog_detail.html', context)  # 响应
     response.set_cookie(read_cookie_key, 'true')  # 根据博客的主键值设置cookie, 不设置失效时间，关闭浏览器失效
