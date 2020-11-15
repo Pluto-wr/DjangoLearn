@@ -8,8 +8,8 @@ from django.utils import timezone
 
 class ReadNum(models.Model):
     read_num = models.IntegerField(default=0)  # 阅读计数字段，默认0
-    # blog = models.OneToOneField(Blog, on_delete=models.DO_NOTHING)  # 一对一
-    content_type = models.ForeignKey(ContentType, on_delete=models.DO_NOTHING)  # 多对一，外键指向ContentType模型
+    # blog = models.OneToOneField(Blog, on_delete=models.CASCADE)  # 一对一
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)  # 多对一，外键指向ContentType模型
     object_id = models.PositiveIntegerField()  # 数值字段类型，存储将要关联的模型中的主键值
     content_object = GenericForeignKey('content_type', 'object_id')  # 特殊的字段类型,允许与任何模型建立关系
 
@@ -30,6 +30,6 @@ class ReadNumExpandMethod():
 class ReadDetail(models.Model):
     date = models.DateField(default=timezone.now)
     read_num = models.IntegerField(default=0)  # 阅读计数字段，默认0
-    content_type = models.ForeignKey(ContentType, on_delete=models.DO_NOTHING)  # 多对一，外键指向ContentType模型
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)  # 多对一，外键指向ContentType模型
     object_id = models.PositiveIntegerField()  # 数值字段类型，存储将要关联的模型中的主键值
     content_object = GenericForeignKey('content_type', 'object_id')

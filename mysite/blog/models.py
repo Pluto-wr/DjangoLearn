@@ -21,9 +21,9 @@ class BlogType(models.Model):
 
 class Blog(models.Model, ReadNumExpandMethod):
     title = models.CharField(max_length=50)
-    blog_type = models.ForeignKey(BlogType, on_delete=models.DO_NOTHING)
+    blog_type = models.ForeignKey(BlogType, on_delete=models.CASCADE)
     content = RichTextUploadingField()
-    author = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     created_time = models.DateTimeField(auto_now_add=True)
     last_updated_time = models.DateTimeField(auto_now=True)
     read_details = GenericRelation(ReadDetail)  # 反向通用关系，创建一个从相关对象到该对象的关系， 这里关联到ReadDetail-->Blog
