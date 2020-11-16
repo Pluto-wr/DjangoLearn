@@ -33,9 +33,10 @@ ul.blog-info-description li {
     display: inline-block;
     margin-right: 2em;
 }
-/*div.blog-content {*/
-/*    text-indent: 2em;*/
-/*}*/
+div.blog-content {
+    /*text-indent: 2em;*/
+    margin-bottom: 5em;
+}
 
 /*上下页*/
 ol.breadcrumb {
@@ -83,4 +84,15 @@ div#reply_content_container {
 p#reply_title{
     border-bottom: 1px dashed #cccccc;
     padding-bottom: 0.5em;
+}
+
+/*点赞*/
+div.like {
+    color: #337ab7;
+    cursor: pointer;
+    display: inline-block;
+}
+
+div.like .active {
+    color: #f22;
 }

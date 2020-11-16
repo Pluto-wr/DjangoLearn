@@ -32,7 +32,7 @@ urlpatterns = [
     path('login/', views.login, name='login'),  # 登录
     path('logout/', views.logout, name='logout'),  # 退出
     path('register/', views.register, name='register'),  # 注册
-
+    path('likes/', include('likes.urls')),  # 点赞
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
