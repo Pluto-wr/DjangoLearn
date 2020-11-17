@@ -114,6 +114,33 @@
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="login_modal" tabindex="-1" role="dialog">
+           <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                 <form id="login_modal_form" action="" method="POST">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">登录</h4>
+                     </div>
+
+                     <div class="modal-body">
+                        {% csrf_token %}
+                        {% for filed in login_form %}
+                            <label for="{{ filed.id_for_label }}">{{ filed.label }}</label>
+                            {{ filed }}  <!--输入框部分-->
+                        {% endfor %}
+                        <span id="login_modal_tip" class="text-danger"></span>
+                     </div>
+
+                     <div class="modal-footer">
+                         <button type="submit" class="btn btn-primary">登录</button>
+                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                     </div>
+                 </form>
+            </div>
+          </div>
+        </div>
         <!--分享部分-->
         <div class="bdsharebuttonbox" style="margin-top: 4em;"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone"
                                                                                               data-cmd="qzone"></a><a
@@ -192,7 +219,11 @@
                         var liked_num = $(obj.getElementsByClassName('liked-num'));
                         liked_num.text(data['liked_num'])
                     } else {
-                        alert(data['message'])
+                        if(data['code']==400){
+                            $('#login_modal').modal('show');
+                        }else {
+                            alert(data['message'])
+                        }
                     }
                 },
                 error: function (xhr) {
@@ -200,6 +231,24 @@
                 }
             });
         }
+
+        $("#login_modal_form").submit(function (event) {
+            event.preventDefault()
+            $.ajax({
+                url: "{% url 'login_form_modal' %}",
+                type: "POST",
+                data: $(this).serialize(),
+                cache: false,
+                success: function (data) {
+                    if(data['status']=='SUCCESS'){
+                        {#当前窗口进行刷新#}
+                        Window.location.reload();
+                    }else {
+                        $("#login_modal_tip").text('用户名或密码不正确');
+                    }
+                }
+            })
+        })
 
 
     // ajax不刷新页面异步提交数据

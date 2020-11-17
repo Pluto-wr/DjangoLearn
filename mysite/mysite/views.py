@@ -17,6 +17,7 @@ from django.urls import reverse   # 反向解析别名
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from .forms import LoginForm, RegForm
+from django.http import JsonResponse
 
 
 # 主页
@@ -59,6 +60,18 @@ def login(request):
     content = {}
     content.update(login_form=login_form)
     return render(request, 'login.html', content)
+
+
+def login_form_modal(request):
+    data = {}
+    login_form = LoginForm(request.POST)
+    if login_form.is_valid():  # 验证数据是否通过，通过即获取U P
+        user = login_form.cleaned_data['user']
+        auth.login(request, user)  # 登录
+        data.update(status='SUCCESS')
+    else:
+        data.update(status='ERROR')
+    return JsonResponse(data)
 
 
 # 退出

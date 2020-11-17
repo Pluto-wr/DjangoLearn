@@ -31,3 +31,7 @@ div#footer{
     margin-bottom: 10px;
     text-shadow: 1px 1px 0 #fff;
   }
+
+ul.navbar-right {
+    margin-right: 0;
+}

@@ -30,6 +30,7 @@ urlpatterns = [
     path('statistics/', include('read_statistics.urls')),  # 统计页面
     path('comment/', include('comment.urls')),  # 评论
     path('login/', views.login, name='login'),  # 登录
+    path('login_form_modal/', views.login_form_modal, name='login_form_modal'),  # 登录
     path('logout/', views.logout, name='logout'),  # 退出
     path('register/', views.register, name='register'),  # 注册
     path('likes/', include('likes.urls')),  # 点赞

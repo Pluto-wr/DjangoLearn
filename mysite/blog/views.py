@@ -6,6 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 from read_statistics.utils import read_statistics_once_read
 from comment.models import Comment
 from comment.forms import CommentForm
+from mysite.forms import LoginForm
 
 # Create your views here.
 
@@ -88,6 +89,7 @@ def blog_detail(request, blog_pk):
                    comment_form=CommentForm(initial={'content_type': blog_content_type.model,  # 这是是将模型Blog对象转成字符串
                                                      'object_id': blog_pk,
                                                      'reply_comment_id': 0}),
+                   login_form=LoginForm(),
                    )
     response = render(request, 'blog/blog_detail.html', context)  # 响应
     response.set_cookie(read_cookie_key, 'true')  # 根据博客的主键值设置cookie, 不设置失效时间，关闭浏览器失效

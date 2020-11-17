@@ -56,9 +56,9 @@
                 {% else %}
                 <li class="{% block nav_login_active %}{% endblock %}">
                     <a href="{% url 'login' %}">登录</a></li>
-                {% endif %}
                 <li class="{% block nav_register_active %}{% endblock %}">
                     <a href="{% url 'register' %}">注册</a></li>
+                {% endif %}
                 </ul>
             </div>
         </div>
