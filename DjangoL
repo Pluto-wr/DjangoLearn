@@ -125,3 +125,23 @@ padding:25px 50px 75px 100px;
 左填充为100px
 
 
+
+# Mysql
+- 1. 登录本地Mysql创建数据库，utf-8 创建用户
+    创建用户： create user 'wurun'@localhost' identified by '1234';
+- 2. init 引入pymysql
+- 3. File "C:\Users\Zhypangpang\.virtualenvs\DjangoLearn-I1UpFc5T\lib\site-packages\django\db\backends\mysql\operations.py", line 146, in last_executed_query
+     注释145-146 字符集问题
+- 4. 迁移数据库后创建python manage.py createcachetable 缓存表
+-5. 导出数据sqlite-Mysql
+   python manage.py dumpdata > data.json sqlit导出
+   python manage.py loaddata data.json 迁移到mysql报错
+   删除 主键值=？的表 --》delete form django_contene_type;
+   删除关联的外键表
+   删除的主键值=? 的表
+   再次载入数据ython manage.py loaddata data.json
+-6 mysql 需要启动时区
+https://dev.mysql.com/downloads/timezones.html
+下载解压 后mysql -u root -p mysql < timezone_posix.sql启用
+
+
