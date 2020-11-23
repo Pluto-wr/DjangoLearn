@@ -33,6 +33,7 @@ class CommentForm(forms.Form):
 
     def clean(self):
         """
+        asa 
         评论对象验证
         :return:
         """
