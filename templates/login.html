@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    BLOG|登录
+{% endblock %}
+
+
+<!--active显示引用 选择首页有选中效果-->
+{% if user.is_authenticated %}
+    {% block nav_name_active %}active{% endblock %}
+{% else %}
+    {% block nav_login_active %}active{% endblock %}
+{% endif %}
+
+
+{# 首页显示的内容 #}
+{% block content %}
+    <body style="background-image: url(../static/zh.png); background-repeat: no-repeat; -o-background-size: 100% auto">
+        <div class="container">
+        <div class="row" style="margin-top: 10em;">
+            <!--4列偏移居中-->
+            <div class="col-xs-4 col-xs-offset-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" style="text-align: center" ><b>用户登录</b></h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            {% for filed in login_form %}
+                                <label for="{{ filed.id_for_label }}">{{ filed.label }}</label>
+                                {{ filed }}  <!--输入框部分-->
+                                <p class="text-danger">{{ filed.errors.as_text }}</p>
+                            {% endfor %}
+                            <span class="pull-left text-danger">{{ login_form.non_field_errors }}</span>
+                            <input type="submit" value="登录" class="btn btn-primary pull-right">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}

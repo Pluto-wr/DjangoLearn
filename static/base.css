@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin-top: 70px!important;
+    background-color: #f6f6f6!important;
+}
+
+/*所有引用列表组的都不显示实现边框*/
+ul.list-group {
+    margin-bottom: auto;
+}
+ul.list-group > li.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: none;
+}
+
+/*底部区域*/
+div#footer{
+    text-align: center;
+    min-height: 15px;
+    _height: 15px;
+    margin-top: 10px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 0 #fff;
+  }

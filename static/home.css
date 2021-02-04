@@ -1,0 +1,44 @@
+div.text {
+    left: 50%;
+    position: absolute;
+    font-size: 444%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+}
+div.text h1{
+    font-size: 100px;
+    color: white;
+}
+
+/*div.container {*/
+/*    width: auto;*/
+/*}*/
+/*p a.btn-primary{*/
+/*    color: #631b1b;*/
+/*    border-color: #4c3736;*/
+/*    background-color: white;*/
+/*}*/
+
+/*视频相关css样式*/
+video{
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    width: auto;
+    /*加滤镜*/
+    /*filter: blur(15px); //背景模糊设置*/
+    /*-webkit-filter: grayscale(100%);*/
+    /*filter:grayscale(100%); //背景灰度设置*/
+    /*z-index:-11*/
+}
+source{
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    width: auto;
+}
+

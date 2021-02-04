@@ -1,0 +1,13 @@
+div.panel-heading {
+    font-size: 110%;
+    /*text-align: center;*/
+    /*margin-top: 4em;*/
+    /*margin-bottom: 2em;*/
+}
+
+div#container {
+    margin: 0 auto;
+    height: 45em;
+    min-width: 30em;
+    max-width: 60em;
+}

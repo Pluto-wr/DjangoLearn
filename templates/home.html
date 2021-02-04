@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    BLOG|首页
+{% endblock %}
+
+{# 引用body css样式 #}
+{% load static %}
+{% block heard_extends %}
+    <link rel="stylesheet" href={% static 'home.css' %}>
+{% endblock %}
+
+<!--active显示引用 选择首页有选中效果-->
+{% block nav_home_active %}active{% endblock %}
+
+{# 首页显示的内容，引用视频 #}
+{% block content %}
+    <video id="v1" autoplay loop muted>
+        <source src="../static/kui.mp4" />
+    </video>
+    <div class="text">
+        <h1>Hello ！</h1>
+    </div>
+{% endblock %}
